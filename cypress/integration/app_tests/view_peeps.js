@@ -19,7 +19,7 @@ context('Homepage', () => {
   describe("Peep view", () => {
   	beforeEach(function () {
       this.fetchPeepsDeferred.resolve({
-        json () { return {
+        json () { return [{
     		"id": 224,
     		"body": "I hate you KVN",
     		"created_at": "2018-12-11T16:32:05.275Z",
@@ -29,16 +29,18 @@ context('Homepage', () => {
       		"handle": "E35-12"
     		},
     		"likes": []
-  		} },
+  		}]},
         ok: true,
       })
     })
 
   	it("clicking a button should display peeps", () => {
   		cy.contains('View Peeps').click()
-  		cy.get("#peeps-view").should(($pv) => {
-  			cy.expect($pv).to.contain("I hate you KVN")
-  		})
+  		cy.get("#returned-peeps").as('returnedPeeps')
+  		.should('have.length', 1);
+
+  		cy.get("@returnedPeeps").find("spanB")
+      .should('have.text', 'I hate you KVN')
   	})
   })
 })
