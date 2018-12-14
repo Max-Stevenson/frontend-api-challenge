@@ -1,4 +1,15 @@
 const deferred = require('./deferred')
+const samplePeep = [{
+  "id": 224,
+  "body": "I hate you KVN",
+  "created_at": "2018-12-11T16:32:05.275Z",
+  "updated_at": "2018-12-11T16:32:05.275Z",
+  "user": {
+  	"id": 540,
+   	"handle": "E35-12"
+  },
+  "likes": []
+}]
 
 context('Homepage', () => {
   beforeEach(function () {
@@ -19,17 +30,7 @@ context('Homepage', () => {
   describe("Peep view", () => {
   	beforeEach(function () {
       this.fetchPeepsDeferred.resolve({
-        json () { return [{
-    		"id": 224,
-    		"body": "I hate you KVN",
-    		"created_at": "2018-12-11T16:32:05.275Z",
-    		"updated_at": "2018-12-11T16:32:05.275Z",
-    		"user": {
-      		"id": 540,
-      		"handle": "E35-12"
-    		},
-    		"likes": []
-  		}]},
+        json () { return samplePeep },
         ok: true,
       })
     })

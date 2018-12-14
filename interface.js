@@ -1,4 +1,5 @@
 var viewPeepsBtn = document.getElementById("peeps-view");
+var createNewBtn = document.getElementById("");
 viewPeepsBtn.addEventListener("click", getPeeps);
 
 
@@ -29,3 +30,7 @@ function getPeeps() {
   	})
   });
 };
+
+function createNewUser() {
+
+}
