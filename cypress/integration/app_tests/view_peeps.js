@@ -37,10 +37,10 @@ context('Homepage', () => {
   	it("clicking a button should display peeps", () => {
   		cy.contains('View Peeps').click()
   		cy.get("#returned-peeps").as('returnedPeeps')
-  		.should('have.length', 1);
+  		.should('have.length', 1)
 
-  		cy.get("@returnedPeeps").find("spanB")
-      .should('have.text', 'I hate you KVN')
+  		cy.get("@returnedPeeps").find("p")
+      .contains('I hate you KVN')
   	})
   })
 })

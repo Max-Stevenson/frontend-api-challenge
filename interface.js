@@ -20,12 +20,11 @@ function getPeeps() {
   	let peepsList = document.getElementById('returned-peeps')
   	return myJson.map(function(peep){
   		let li = createNode('li');
-  		let span = createNode('span');
-  		let spanB = createNode('spanB')
-  		span.innerHTML =`${peep.user.handle}<br>`;
-  		spanB.innerHTML = `${peep.body}`;
-  		append(li, span);
-  		append(li, spanB);
+  		let div = createNode('div');
+  		let para = createNode('p')
+  		para.innerHTML =`${peep.user.handle}\n<br>${peep.body}`;
+  		append(div, para);
+  		append(li, div);
       append(peepsList, li);
   	})
   });
