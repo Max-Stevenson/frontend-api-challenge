@@ -40,8 +40,6 @@ function createNewUser(e) {
 		"password":document.getElementById('new-password').value}
 	};
 
-	console.log(data.user)
-
 	fetch(url, {
 	  method: "POST",
     mode: "cors",
@@ -55,6 +53,8 @@ function createNewUser(e) {
     body: JSON.stringify(data),
 	})
 	.then(res => res.json())
-	.then(response => console.log('Success:', JSON.stringify(response)))
-	.catch(error => console.error('Error:', error));
+	.then(json => {
+		let output = document.getElementById('handle');
+		return output.innerHTML = `${json.handle}`;
+	});
 };
