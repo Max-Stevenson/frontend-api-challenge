@@ -6,8 +6,8 @@ context('New User', () => {
 		it('A user should be able to sign up', () => {
 			cy.visit('http://127.0.0.1:8080/')
 			cy.get('#new-user').within(($newuser) => {
-				cy.get('input[name="new-handle"]').type('Testing1')
-				cy.get('input[name="new-password"]').type('mypassword')
+				cy.get('input[id="new-handle"]').type('Testing1')
+				cy.get('input[id="new-password"]').type('mypassword')
 			})
 			cy.contains('Submit').click()
 		})

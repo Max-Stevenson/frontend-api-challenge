@@ -1,6 +1,7 @@
 var viewPeepsBtn = document.getElementById("peeps-view");
-var createNewBtn = document.getElementById("");
+var createNewUsr = document.getElementById("new-user");
 viewPeepsBtn.addEventListener("click", getPeeps);
+createNewUsr.addEventListener("submit", createNewUser);
 
 
 function createNode(element) {
@@ -31,6 +32,29 @@ function getPeeps() {
   });
 };
 
-function createNewUser() {
+function createNewUser(e) {
+	e.preventDefault();
+	var url = 'https://chitter-backend-api.herokuapp.com/users';
+	var data = {
+		"user": {"handle":document.getElementById('new-handle').value,
+		"password":document.getElementById('new-password').value}
+	};
 
-}
+	console.log(data.user)
+
+	fetch(url, {
+	  method: "POST",
+    mode: "cors",
+    cache: "no-cache",
+    credentials: "same-origin",
+    headers: {
+        "Content-Type": "application/json; charset=utf-8",
+    },
+    redirect: "follow",
+    referrer: "no-referrer",
+    body: JSON.stringify(data),
+	})
+	.then(res => res.json())
+	.then(response => console.log('Success:', JSON.stringify(response)))
+	.catch(error => console.error('Error:', error));
+};
