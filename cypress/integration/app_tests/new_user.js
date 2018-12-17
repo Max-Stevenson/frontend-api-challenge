@@ -1,11 +1,9 @@
 const deferred = require('./deferred')
 const testUser = {"user": {"handle":"Testing1", "password":"mypassword"}}
-const serverResponse = {"user_id": 678, "session_key": "_2a_10_AsseGfGVHM4RVQJmqd2syO"}
+const serverResponse = {"id": 689, "handle": "Testing1"}
 
 context('New User', () => {
 	beforeEach(function () {
-    // We use a deferred object to make it easy to test
-    // different scenarios
     this.fetchNewUserDeferred = deferred()
 
     cy.visit('http://127.0.0.1:8080/', {
@@ -33,6 +31,10 @@ context('New User', () => {
 				cy.get('input[id="new-password"]').type('mypassword')
 			})
 			cy.contains('Submit').click()
+			cy.get('#handle')
+			.should(($handle) => {
+				expect($handle).to.have.text(`${testUser.user.handle}`);
+			});
 		})
 	})
 })
